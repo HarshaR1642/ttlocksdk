@@ -1,2 +1,22 @@
+plugins {
+    id 'maven-publish'
+}
+
 configurations.maybeCreate("default")
 artifacts.add("default", file('ttlock-sdk-2.0.aar'))
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.github.HarshaR1642'
+            artifactId = 'ttlock-sdk'
+            version = '1.0.1'
+
+            artifact file('ttlock-sdk-2.0.aar')
+        }
+    }
+
+    repositories {
+        mavenLocal()
+    }
+}
