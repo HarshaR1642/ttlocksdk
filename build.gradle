@@ -4,7 +4,46 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.3.2'
+        classpath 'com.android.tools.build:gradle:3.5.3'
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+android {
+    compileSdkVersion 34
+
+    defaultConfig {
+        minSdkVersion 26
+        compileSdkVersion 34
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.github.HarshaR1642'
+            artifactId = 'ttlock-sdk'
+            version = '1.0.0'
+
+            artifact(file('ttlock-sdk-2.0.aar')) {
+                extension 'aar'
+            }
+        }
     }
 }
 
@@ -14,8 +53,4 @@ allprojects {
         maven { url "https://jitpack.io" }
         mavenCentral()
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
