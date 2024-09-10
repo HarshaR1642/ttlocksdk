@@ -1,24 +1,41 @@
 plugins {
+    id 'com.android.library'
     id 'maven-publish'
 }
 
-configurations.maybeCreate("default")
-artifacts.add("default", file('ttlock-sdk-2.0.aar'))
+android {
+    namespace 'com.android.ttlocksdk'
+
+    compileSdkVersion 34
+
+    defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId = 'com.github.HarshaR1642'
             artifactId = 'ttlock-sdk'
-            version = '1.0.1'
+            version = '1.0.0'
 
             artifact(file('ttlock-sdk-2.0.aar')) {
                 extension 'aar'
             }
         }
-    }
-
-    repositories {
-        mavenLocal()
     }
 }
