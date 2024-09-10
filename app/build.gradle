@@ -12,7 +12,9 @@ publishing {
             artifactId = 'ttlock-sdk'
             version = '1.0.1'
 
-            artifact file('ttlock-sdk-2.0.aar')
+            artifact(file('ttlock-sdk-2.0.aar')) {
+                extension 'aar'
+            }
         }
     }
 
